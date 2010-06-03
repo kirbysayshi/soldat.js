@@ -1,10 +1,5 @@
 function Player(){
 	
-	this.addEventListener('InputDetection.W', function(){
-		// move left
-	}, false);
-	
-	
 	ComplexSprite.call(this);
 }
 
