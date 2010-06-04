@@ -2,34 +2,31 @@
 function InputDetection(){
 	
 	this.delayed = [];
-	this.delayed[InputDetection.SPACE] = '300';
+	//this.delayed[InputDetection.SPACE] = '300';
 	this.timers = [];
-	this.listeners = {};
 	
 	var me = this;
 	
 	this.pressed = [];
 	this.lastkey = 0;
-	this.window = window;
+	/*this.window = window;
 	this.window.addEventListener('keydown', function(e){
 		me._onKeyDown(e);
 	}, false);
 	this.window.addEventListener('keyup', function(e){
 		me._onKeyUp(e);
-	}, false);
+	}, false);*/
 	
 }
 
 InputDetection.prototype = {
 	_onKeyDown: function(e){
 		this.pressed[e.keyCode] = true;
+		console.log("InputDetection Down");
 	},
 	_onKeyUp: function(e){
 		this.pressed[e.keyCode] = undefined;
 		this.lastkey = e.keyCode;
-		if(this.listeners[e.keyCode] !== undefined){
-			this.listeners[e.keyCode](e.keyCode, CURE); // run callback
-		}
 	},
 	isDown: function(key){		
 		// key is registered as a delayed key
@@ -73,12 +70,6 @@ InputDetection.prototype = {
 				console.log(key + " ready for hit");
 			}
 		}
-	},
-	addKeyListener: function(keyConst, callback){
-		this.listeners[keyConst] = callback;
-	},
-	removeKeyListener: function(keyConst){
-		this.listeners[keyConst] = undefined;
 	}
 };
 

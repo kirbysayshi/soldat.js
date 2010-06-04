@@ -1,18 +1,20 @@
 function Soldat(){
 	var self = this;
-	this.key = new InputDetection();
+	this.key = new ThrustKeys();
 	this.renderObjects = Array();
 	this.addedObjects = Array();
 	this.frameRate = 60;
 	this.timerRef;
+	this.canvas = document.getElementById("soldat-stage");
+	this.ctx = this.canvas.getContext('2d');
 	this.backBuffer = document.createElement('canvas');
 	this.backBuffer.width = this.canvas.width;
 	this.backBuffer.height = this.canvas.height;
 	this.backCtx = this.backBuffer.getContext('2d');
 	this.assetList = {
-		'Name_to_reference_by': 			['assettype', "path/to/asset/name.png"]
+		'ZeroMovement': 			['image', "assets/mmzsheet.gif"]
 	};
-	this.as = new AssetLoader(function(){
+	SOLDATASSETS = new AssetLoader(function(){
 		self.init();
 	});
 	
@@ -25,6 +27,9 @@ Soldat.prototype = {
 
 	init: function(){
 		var self = this;
+		console.log("SOLDAT INIT");
+		// init map
+		this.map = new Map("TestMap1", "testMap1", 1000, 800, "#CCCCCC");
 		
 		// init player
 		this.player = new Player();
@@ -40,12 +45,13 @@ Soldat.prototype = {
 		});
 	},
 	main: function(){
+		this.key.incrementThrusts();
 		this.render();
 	},
 	preload: function(){
 		for(var a in this.assetList){
 			console.log(a);
-			this.as.queue( this.assetList[a][0], {src: this.assetList[a][1], name: a} );
+			SOLDATASSETS.queue( this.assetList[a][0], {src: this.assetList[a][1], name: a} );
 		}
 	},
 	addChild: function(obj){
