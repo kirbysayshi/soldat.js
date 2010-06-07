@@ -5,12 +5,13 @@
 		<title>SOLDAT.JS</title>
 		
 		<style type="text/css">
-		#soldat-stage { width: 100%; height: 100%; border: 1px solid #CCCCCC; }
+		#soldat-stage { border: 1px solid #CCCCCC; }
 		</style>
 	</head>
 	<body id="index" onload="">
-		<canvas id="soldat-stage"></canvas>
-		
+		<canvas id="soldat-stage" height="300px" width="400px"></canvas>
+		<div id="fpsMeter"></div>
+		<script type="text/javascript" charset="utf-8" src='js/FPSMonitor.js'></script>
 		<script type="text/javascript" charset="utf-8" src='js/AssetLoader.js'></script>
 		<script type="text/javascript" charset="utf-8" src='js/SimpleSprite.js'></script>
 		<script type="text/javascript" charset="utf-8" src='js/ComplexSprite.js'></script>
@@ -18,10 +19,11 @@
 		<script type="text/javascript" charset="utf-8" src='js/InputDetection.js'></script>
 		<script type="text/javascript" charset="utf-8" src='js/ThrustKeys.js'></script>
 		<script type="text/javascript" charset="utf-8" src='js/Map.js'></script>
+		<script type="text/javascript" charset="utf-8" src='js/LevelOne.js'></script>
 		<script type="text/javascript" charset="utf-8" src='js/Soldat.js'></script>
 		<script type="text/javascript">
 		window.onload = function(){
-			var SOLDAT = new Soldat();
+			SOLDAT = new Soldat();
 		};
 		</script>
 	</body>

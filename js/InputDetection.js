@@ -9,13 +9,6 @@ function InputDetection(){
 	
 	this.pressed = [];
 	this.lastkey = 0;
-	/*this.window = window;
-	this.window.addEventListener('keydown', function(e){
-		me._onKeyDown(e);
-	}, false);
-	this.window.addEventListener('keyup', function(e){
-		me._onKeyUp(e);
-	}, false);*/
 	
 }
 

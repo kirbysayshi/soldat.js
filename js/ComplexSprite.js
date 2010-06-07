@@ -9,7 +9,7 @@ function ComplexSprite(imgName, animationMetrics){
 		this.lastFrame = 0;
 		this.delayCounter = 0;
 	
-		this.tileSheet = CURE.as.getAsset(imgName);
+		this.tileSheet = SOLDATASSETS.getAsset(imgName);
 	
 		for(var i in animationMetrics){
 			this.sequences[i] = animationMetrics[i];

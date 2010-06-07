@@ -2,7 +2,18 @@ function ThrustKeys(){
 	InputDetection.call(this);
 	this.thrustAmounts = [];
 	this.limits = [];
-	this.limits[InputDetection.SPACE] = 500; // ms
+	
+	// default all keys to 100
+	for(var prop in InputDetection){
+		if(prop != "prototype"){
+			this.limits[ InputDetection[prop] ] = 100; 
+		}
+	}
+	
+	// override keys here
+	this.limits[InputDetection.SPACE] = 500; // 60 fps, inc++ each frame... == (ms / 1000) * fps
+	//this.limits[InputDetection.CTRL] = 10;
+	this.limits[InputDetection.D] = 100;
 
 	var me = this;
 	this.window = window;
@@ -20,7 +31,7 @@ ThrustKeys.prototype.constructor = ThrustKeys;
 ThrustKeys.prototype.incrementThrusts = function(){
 	for(var i = 0; i < this.thrustAmounts.length; i++){
 		if(this.thrustAmounts[i] < this.limits[i]){
-			this.thrustAmounts[i]++;
+			this.thrustAmounts[i] += 1;
 		} 
 	}
 };
@@ -28,10 +39,8 @@ ThrustKeys.prototype.incrementThrusts = function(){
 ThrustKeys.prototype._onKeyDown = function(e){
 	this.pressed[e.keyCode] = true;
 	this.thrustAmounts[e.keyCode] = 0;
-	console.log("ThrustKey Down");
 };
 ThrustKeys.prototype._onKeyUp = function(e){
-	console.log(this);
 	this.pressed[e.keyCode] = undefined;
 	this.lastkey = e.keyCode;
 	this.thrustAmounts[e.keyCode] = undefined;

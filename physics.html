@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Traer Physics Test</title>
+		
+		<style type="text/css">
+		#soldat-stage { border: 1px solid #CCCCCC; }
+		</style>
+	</head>
+	<body id="index" onload="">
+		<canvas id="soldat-stage" height="300px" width="400px"></canvas>
+		<div id="fpsMeter"></div>
+		<script type="text/javascript" charset="utf-8" src='js/FPSMonitor.js'></script>
+		<script type="text/javascript" charset="utf-8" src='js/traer.physics.js'></script>
+		
+		<script type="text/javascript">
+		window.onload = function(){
+			var canvas = document.getElementById("soldat-stage");
+			var ctx = canvas.getContext('2d');
+			
+			var PS = new ParticleSystem(9.8, 0.99);
+			var particle = PS.makeParticle(100, 20, 20, 0);
+			var floor = PS.makeParticle(100, 20, canvas.height - 40, 0);
+			floor.makeFixed();
+			
+			PS.makeAttraction(particle, floor, -1, 5);
+			
+			var intVal = setInterval(function(){
+				
+				var pPos = particle.position().x()
+				var x = particle.position().x();
+				var y = particle.position().y();
+				
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.fillStyle = "#000000";
+				ctx.fillRect( x, y, 10, 10);
+				ctx.fillStyle = "#CCCCCC";
+				ctx.fillRect(floor.position().x(), floor.position().y(),
+					20, 20)
+				
+				PS.tick();
+			},25);
+			
+			window.addEventListener('keydown', function(e){
+				clearInterval(intVal);
+			}, false);
+			
+		};
+		</script>
+	</body>
+</html>

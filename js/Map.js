@@ -5,7 +5,7 @@ function Map(name, assetName, vwidth, vheight, bgColor){
 
 	this.mapname = name;
 	this.assetName = assetName;
-	this.lower_visual = SOLDATASSETS.getAsset(assetName + "_lower") || new Image();
+	this.lower_visual = SOLDATASSETS.getAsset(assetName + "_lower");
 	this.upper_visual = SOLDATASSETS.getAsset(assetName + "_upper") || new Image();
 	
 	this.backgroundColor = bgColor;
@@ -29,10 +29,12 @@ function Map(name, assetName, vwidth, vheight, bgColor){
 
 Map.prototype = {
 	drawBackground: function(ctx){
-		if(this.backgroundColor != ''){
+		if(this.backgroundColor == ''){
 			ctx.fillStyle = "rgb(13,13,13)";
-			ctx.fillRect (0, 0, this.vWidth, this.vHeight);
+		} else {
+			ctx.fillStyle = this.backgroundColor;
 		}
+		ctx.fillRect (0, 0, this.vWidth, this.vHeight);
 	},
 	drawUnderlays: function(ctx){
 		ctx.drawImage(this.lower_visual, this.x, this.y, this.vWidth, this.vHeight, 0, 0, this.vWidth, this.vHeight);
