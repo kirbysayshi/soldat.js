@@ -21,10 +21,12 @@
 			
 			var PS = new ParticleSystem(9.8, 0.99);
 			var particle = PS.makeParticle(100, 20, 20, 0);
+			var p2 = PS.makeParticle(10, 50, 20, 0);
 			var floor = PS.makeParticle(100, 20, canvas.height - 40, 0);
 			floor.makeFixed();
 			
 			PS.makeAttraction(particle, floor, -1, 5);
+			PS.makeSpring(particle, p2, 1, 0.9, 100);
 			
 			var intVal = setInterval(function(){
 				

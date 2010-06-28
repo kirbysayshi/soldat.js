@@ -30,7 +30,7 @@ FPSMonitor.prototype = {
 		
 		this.prevFrameTime = this.time;
 		this.deviance = this.fps / this.targetFPS;
-		return ((this.fps + " FPS / ") + this.frameTime) + " MS, Deviance: " + this.deviance + "%";
+		return ((this.fps + " FPS / ") + this.frameTime) + " MS, " + (this.deviance * 100) + "% of target speed";
 	},
 	getTimer: function(){
 		return new Date().getTime() - this.startTime;
